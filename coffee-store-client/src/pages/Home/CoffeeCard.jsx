@@ -1,13 +1,15 @@
 import { FaRegEye } from "react-icons/fa";
 import { MdDelete, MdModeEditOutline } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 /* eslint-disable react/prop-types */
-const CoffeeCard = ({ singleCoffee, coffeeAfterDelete }) => {
+const CoffeeCard = ({ singleCoffee, user, coffeeAfterDelete }) => {
   const { _id, name, chef, price, photo } = singleCoffee;
+  const navigate = useNavigate();
 
   const handleDeleteCoffee = (id) => {
+    if(user) {
     Swal.fire({
       title: "Are you sure?",
       icon: "warning",
@@ -33,6 +35,9 @@ const CoffeeCard = ({ singleCoffee, coffeeAfterDelete }) => {
           });
       }
     });
+  } else{
+    navigate("/login");
+  }
   };
 
   return (

@@ -28,6 +28,7 @@ async function run() {
     await client.connect();
 
     const coffeeCollection = client.db("CoffeeDB").collection("coffee");
+    const userCollection = client.db("userDB").collection("users");
     
 
     // Coffee database management
@@ -80,8 +81,28 @@ async function run() {
       res.send(result);
     })
 
+    //User management
+    app.post("/users", async(req,res)=>{
+      const newUser = req.body;
+      const result = await userCollection.insertOne(newUser);
+      res.send(result);
+    })
 
 
+    app.patch("/users", async(req, res) => {
+      const user = req.body;
+      const filter = {email: user.email}
+      const updateDoc = {
+        $set:{
+        email: user.email,
+        creationTime: user.createdTime,
+        lastLoginTime: user.lastLoginTime
+        }
+      }
+      const options = {upsert: true}
+      const result = await userCollection.updateOne(filter, updateDoc, options);
+      res.send(result)
+    })
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

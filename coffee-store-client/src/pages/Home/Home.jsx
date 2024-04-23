@@ -2,17 +2,19 @@ import { Link, useLoaderData } from "react-router-dom";
 import SecHeader from "../../components/secHeader/SecHeater";
 import { BsCup } from "react-icons/bs";
 import CoffeeCard from "./CoffeeCard";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Home = () => {
   const initialCoffeeData = useLoaderData();
   const [newCoffeeData, setNewCoffeeData] = useState(initialCoffeeData);
+  const {user} = useContext(AuthContext);
+
 
   const coffeeAfterDelete = (id) => {
     const coffeeData = initialCoffeeData.filter(coffee => coffee._id !== id);
     setNewCoffeeData(coffeeData);
   }
-
 
   return (
     <main>
@@ -34,6 +36,7 @@ const Home = () => {
                 singleCoffee={singleCoffee}
                 key={singleCoffee._id}
                 coffeeAfterDelete={coffeeAfterDelete}
+                user={user}
               >
                 {" "}
               </CoffeeCard>
