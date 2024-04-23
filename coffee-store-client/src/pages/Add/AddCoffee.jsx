@@ -51,7 +51,6 @@ const AddCoffee = () => {
       <h5 className="font-bold">Back to Home</h5>
     </Link>
 
-
     <form className="bg-[var(--bg-primary)] mt-8 md:mt-10 lg:mt-12 p-10 rounded" onSubmit={handleAddCoffee}>
       <div
         className="text-center md:w-4/5 mx-auto space-y-4 mb-6">

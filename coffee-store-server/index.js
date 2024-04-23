@@ -10,7 +10,7 @@ app.use(express.json());
 
 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = "mongodb+srv://inbxmahbub:Ug2CfeF21CK2cqvo@coffeestore.ycvb6y6.mongodb.net/?retryWrites=true&w=majority&appName=coffeeStore";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -27,6 +27,27 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
+    const coffeeCollection = client.db("CoffeeDB").collection("coffee");
+    
+
+    // Coffee database management
+    app.post("/coffee", async(req,res)=>{
+      const newCoffee = req.body;
+      const result = await coffeeCollection.insertOne(newCoffee);
+      res.send(result);
+    })
+
+    app.get("/coffee", async(req, res) => {
+      const result = await coffeeCollection.find().toArray();
+      res.send(result)
+    })
+
+    app.delete("/coffee/:id", async(req, res) => {
+      const id = req.params.id;
+      const query = {_id: new ObjectId(id)};
+      const result = await coffeeCollection.deleteOne(query);
+      res.send(result);
+    })
 
 
 
