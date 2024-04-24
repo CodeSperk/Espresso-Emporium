@@ -36,6 +36,7 @@ const CoffeeCard = ({ singleCoffee, user, coffeeAfterDelete }) => {
       }
     });
   } else{
+    
     navigate("/login");
   }
   };

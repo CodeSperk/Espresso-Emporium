@@ -6,6 +6,7 @@ import UpdateCoffee from "../pages/update/UpdateCoffee";
 import Register from "../pages/register/Register";
 import Login from "../login/Login";
 import PrivateRout from "./PrivateRout";
+import Users from "../pages/users/Users";
 
 const Routes = createBrowserRouter([
   {
@@ -34,6 +35,11 @@ const Routes = createBrowserRouter([
       {
         path:"/login",
         element:<Login></Login>
+      },
+      {
+        path:"/users",
+        element:<Users></Users>,
+        loader: () => fetch("http://localhost:5000/users")
       }
     ]
   }

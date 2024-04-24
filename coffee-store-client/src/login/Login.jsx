@@ -32,7 +32,7 @@ const Login = () => {
         lastLoginTime: result.user.metadata.lastSignInTime
       }
 
-      fetch("http://localhost:5000/users", {
+      fetch("https://coffee-store-server-three-theta.vercel.app/users", {
         method: "PATCH",
         headers: {
           'content-type' : 'application/json'
@@ -66,7 +66,7 @@ const Login = () => {
               lastLoginTime: result.user.metadata.lastSignInTime
             }
       
-            fetch("http://localhost:5000/users", {
+            fetch("https://coffee-store-server-three-theta.vercel.app/users", {
               method: "PATCH",
               headers: {
                 'content-type' : 'application/json'

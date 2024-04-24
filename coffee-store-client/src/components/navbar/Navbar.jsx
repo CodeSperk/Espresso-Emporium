@@ -31,9 +31,13 @@ const Navbar = () => {
         <h3 className="text-white">Espressso Emporium</h3>
       </div>
       {user ? 
-          <button className="font-medium text-[var(--clr-accent)] hover:underline" onClick={handleLogout}>Logout</button>
-          : 
-          <Link to="/login" className="font-medium text-[var(--clr-accent)] hover:underline">Login</Link>
+          <div className="flex gap-4">
+            <Link to="/users" className="font-medium text-[var(--clr-accent)] text-lg hover:underline">Users</Link>
+
+            <button className="font-medium text-[var(--clr-accent)] hover:underline" onClick={handleLogout}>Logout</button>
+          </div>
+          :  
+            <Link to="/login" className="font-medium text-[var(--clr-accent)] hover:underline">Login</Link>        
         }
       </div>
       

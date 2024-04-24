@@ -31,16 +31,17 @@ const Home = () => {
           </Link>
 
           <div className="mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 justify-center items-center">
-            {newCoffeeData.map((singleCoffee) => (
+            {
+            newCoffeeData.map((singleCoffee) => 
               <CoffeeCard
                 singleCoffee={singleCoffee}
                 key={singleCoffee._id}
                 coffeeAfterDelete={coffeeAfterDelete}
                 user={user}
               >
-                {" "}
+               
               </CoffeeCard>
-            ))}
+            )}
           </div>
         </section>
       </main>
